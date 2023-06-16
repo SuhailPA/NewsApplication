@@ -1,6 +1,7 @@
 package com.example.newsapp.di
 
 import com.example.newsapp.data.NewsAPIInterface
+import com.example.newsapp.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,4 +24,8 @@ object NewsModule {
     fun providesNewsInterface(retrofit: Retrofit): NewsAPIInterface =
         retrofit.create(NewsAPIInterface::class.java)
 
+    @Provides
+    @Singleton
+    fun provideNewsRepository (newsAPIInterface: NewsAPIInterface) : NewsRepository =
+        NewsRepository(newsAPIInterface)
 }
