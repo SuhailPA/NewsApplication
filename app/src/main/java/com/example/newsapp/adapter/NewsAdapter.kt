@@ -13,6 +13,7 @@ import com.example.newsapp.databinding.NewsItemLayoutBinding
 class NewsAdapter :
     RecyclerView.Adapter<NewsAdapter.ItemViewHolder>() {
 
+    private var onItemClickListner: ((Article) -> Unit)? = null
 
     inner class ItemViewHolder(private val binding: NewsItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -25,6 +26,7 @@ class NewsAdapter :
                 .error(R.drawable.newspaper_icon_new)
                 .centerCrop()
                 .into(binding.imageView)
+            binding.newsItem.setOnClickListener { onItemClickListner?.let { it(article) } }
         }
     }
 
@@ -51,6 +53,10 @@ class NewsAdapter :
             return oldItem == newItem
         }
 
+    }
+
+    fun setOnItemClickListener(listener: (Article) -> Unit) {
+        onItemClickListner = listener
     }
 
     val differ = AsyncListDiffer(this, diffCallBack)

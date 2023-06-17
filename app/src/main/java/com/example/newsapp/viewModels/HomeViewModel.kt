@@ -23,11 +23,14 @@ class HomeViewModel @Inject constructor(val repository: NewsRepository): ViewMod
 
 
     init {
+        refreshNews()
+        getAllNews()
+    }
 
+     fun refreshNews() {
         viewModelScope.launch {
             repository.refreshTopHeadlines("in","857417c014944bc7b92fcbd3cf22c8a1")
         }
-        getAllNews()
     }
 
     private fun getAllNews() {

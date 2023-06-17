@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id "kotlin-kapt"
     id "com.google.dagger.hilt.android"
+    id 'kotlin-parcelize'
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -38,6 +40,9 @@ android {
 }
 
 dependencies {
+
+    //Swipe to refresh
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
     //Room DB
     implementation("androidx.room:room-runtime:2.5.1")

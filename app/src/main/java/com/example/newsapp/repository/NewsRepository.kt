@@ -17,7 +17,6 @@ class NewsRepository @Inject constructor(
         try {
             val response = newsResponse.getTopHeadlines(country, apiKey)
             if (response.body()?.status == "ok") {
-
                 response.body()?.articles?.let {
                     dao.deleteNewsFromDB()
                     dao.storeTopNews(it)
