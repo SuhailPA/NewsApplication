@@ -14,11 +14,16 @@ import com.example.newsapp.data.newslist_response.Article
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.viewModels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val viewModel : HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -40,8 +45,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun getNews() {
-        viewModel.news.observe(viewLifecycleOwner){
-            newsAdapter.differ.submitList(it.articles)
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.newsFlow.collect{
+                withContext(Dispatchers.Main){
+                    newsAdapter.differ.submitList(it)
+                }
+            }
         }
     }
 
