@@ -2,5 +2,7 @@
     <string name="app_name">News App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="country_code">in</string>
+    <string name="news_api_key">857417c014944bc7b92fcbd3cf22c8a1</string>
     <string name="content_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
 </resources>

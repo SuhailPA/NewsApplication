@@ -3,6 +3,7 @@ package com.example.newsapp.di
 import android.app.Application
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.newsapp.R
 import com.example.newsapp.data.NewsAPIInterface
 import com.example.newsapp.data.database.NewsDao
 import com.example.newsapp.data.database.NewsDatabase
@@ -44,4 +45,8 @@ object NewsModule {
     @Provides
     @Singleton
     fun provideDao(database: NewsDatabase): NewsDao = database.newsDao()
+
+    @Provides
+    @Singleton
+    fun provideAPIkey(application : Application) : String = application.getString(R.string.news_api_key)
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapp.R
 import com.example.newsapp.adapter.NewsAdapter
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.viewModels.HomeViewModel
@@ -45,7 +46,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding?.swiperefresh?.setOnRefreshListener {
-            viewModel.refreshNews()
+            viewModel.refreshNews(getString(R.string.country_code),getString(R.string.news_api_key))
         }
     }
 
