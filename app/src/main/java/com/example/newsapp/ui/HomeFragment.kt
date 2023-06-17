@@ -45,13 +45,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun getNews() {
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.newsFlow.collect{
-                withContext(Dispatchers.Main){
-                    newsAdapter.differ.submitList(it)
-                }
-            }
+
+//            viewModel.newsFlow.collect{
+//                withContext(Dispatchers.Main){
+//                    newsAdapter.differ.submitList(it)
+//                }
+//            }
+        viewModel.newsFlow.observe(viewLifecycleOwner) {
+                newsAdapter.differ.submitList(it)
         }
+
     }
 
     override fun onDestroyView() {

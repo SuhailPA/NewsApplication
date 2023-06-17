@@ -17,9 +17,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(val repository: NewsRepository): ViewModel() {
-
-    private val _newsFlow = MutableSharedFlow<List<Article>>()
-    val newsFlow : Flow<List<Article>> = _newsFlow.asSharedFlow()
+//
+//    private val _newsFlow = MutableSharedFlow<List<Article>>()
+    val newsFlow = MutableLiveData<List<Article>>()
 
 
     init {
@@ -33,7 +33,7 @@ class HomeViewModel @Inject constructor(val repository: NewsRepository): ViewMod
     private fun getAllNews() {
         viewModelScope.launch {
             repository.news.collect {
-                _newsFlow.emit(it)
+                newsFlow.value = it
             }
         }
 
